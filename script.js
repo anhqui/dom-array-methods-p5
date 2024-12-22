@@ -27,4 +27,21 @@ async function getRandomUser() {
 // Add new obj and data arr
 function addData(obj) {
   data.push(obj);
+  updateDOM();
 }
+
+// Update DOM
+function updateDOM(provideData = data) {
+  main.innerHTML = "<h2><strong>Person</strong> Wealth</h2>";
+  provideData.forEach((item) => {
+    const element = document.createElement("div");
+    element.classList.add("person");
+    element.innerHTML = `
+    <strong>${item.name}</strong> $${item.money.toLocaleString()}
+    `;
+    main.appendChild(element);
+  });
+}
+
+// Event Listeners
+addUserBtn.addEventListener("click", getRandomUser);
